@@ -65,7 +65,7 @@ namespace OGNAnalyser.Launcher
 
         private static void EventDetectedCallback(AircraftTrackEvent aircraftTrackEvent)
         {
-            Console.WriteLine($"new Event: {aircraftTrackEvent.EventType} at {aircraftTrackEvent.EventDateTimeUTC}, Id: {string.Format("0x{0:X}", aircraftTrackEvent.ReferenceBeacon.AircraftId)}, AircraftAddress: {aircraftTrackEvent.ReferenceBeacon.AircraftAddress}, Long: {aircraftTrackEvent.ReferenceBeacon.PositionLonDegrees}, Lat: {aircraftTrackEvent.ReferenceBeacon.PositionLatDegrees}");
+            Console.WriteLine($"new Event: {aircraftTrackEvent.EventType} at {aircraftTrackEvent.EventDateTimeUTC}, Id: {string.Format("{0:X}", aircraftTrackEvent.ReferenceBeacon.AircraftAddress)}, AircraftAddress: {aircraftTrackEvent.ReferenceBeacon.AircraftAddress}, Long: {aircraftTrackEvent.ReferenceBeacon.PositionLonDegrees}, Lat: {aircraftTrackEvent.ReferenceBeacon.PositionLatDegrees}");
         }
 
         private static void AttachConsoleDisplay(IDictionary<uint, AircraftBeaconSpeedAndTrack> beaconDisplayBuffer, Dictionary<string, List<AircraftTrackEvent>> events, IOGNAnalyser analyser)
