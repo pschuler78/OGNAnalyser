@@ -54,13 +54,18 @@ namespace OGNAnalyser.Launcher
                         PositionLatDegrees = airfield.GetValue<double>("lat"),
                         PositionLonDegrees = airfield.GetValue<double>("lon"),
                         PositionAltitudeMeters = airfield.GetValue<int>("alt")
-                    });
+                    }, EventDetectedCallback);
                 }
 
                 analyser.Run();
 
                 Console.ReadLine();
             }
+        }
+
+        private static void EventDetectedCallback(AircraftTrackEvent aircraftTrackEvent)
+        {
+            Console.WriteLine($"new Event: {aircraftTrackEvent.EventType} at {aircraftTrackEvent.EventDateTimeUTC}, Id: {string.Format("0x{0:X}", aircraftTrackEvent.ReferenceBeacon.AircraftId)}, AircraftAddress: {aircraftTrackEvent.ReferenceBeacon.AircraftAddress}, Long: {aircraftTrackEvent.ReferenceBeacon.PositionLonDegrees}, Lat: {aircraftTrackEvent.ReferenceBeacon.PositionLatDegrees}");
         }
 
         private static void AttachConsoleDisplay(IDictionary<uint, AircraftBeaconSpeedAndTrack> beaconDisplayBuffer, Dictionary<string, List<AircraftTrackEvent>> events, IOGNAnalyser analyser)
@@ -85,7 +90,7 @@ namespace OGNAnalyser.Launcher
                 Console.WriteLine("-- Analysis - Aircraft: -----------------------------------------------------------");
                 var nowUtc = DateTime.Now.ToUniversalTime();
                 foreach (var b in beaconDisplayBuffer)
-                    Console.WriteLine($"\t{b.Key:X} {b.Value.AircraftType}\t: ({Math.Round(nowUtc.Subtract(b.Value.PositionTimeUTC).TotalSeconds, 1)}s ago) {b.Value.GroundSpeedMs}ms ({Math.Round(b.Value.GroundSpeedMs * 3.6f, 1)}km/h) - {b.Value.TrackDegrees}°");
+                    Console.WriteLine($"\t{b.Key:X} {b.Value.AircraftId} {b.Value.AircraftOgnId} {b.Value.AircraftType}\t: ({Math.Round(nowUtc.Subtract(b.Value.PositionTimeUTC).TotalSeconds, 1)}s ago) {b.Value.GroundSpeedMs}ms ({Math.Round(b.Value.GroundSpeedMs * 3.6f, 1)}km/h) - {b.Value.TrackDegrees}°");
 
                 if(events.Any())
                 {

@@ -3,7 +3,7 @@
     "IncludeScopes": false,
     "Debug": {
       "LogLevel": {
-        "Default": "Debug",
+        "Default": "Trace",
         "System": "Information",
         "Microsoft": "Information"
       }
@@ -15,9 +15,9 @@
       "ognUsername": "sgtest",
       "ognPort": 14580,
       "filter": {
-        "centerLatDegrees": 47.170869,
-        "centerLonDegrees": 9.039742,
-        "radiusKm": 150
+        "centerLatDegrees": 47.173484,
+        "centerLonDegrees": 9.0379144,
+        "radiusKm": 100
       }
     },
     "airfields": {
@@ -30,6 +30,31 @@
         "lat": 47.3763925,
         "lon": 8.755306,
         "alt": 536
+      },
+      "lszg": {
+        "lat": 47.1813889,
+        "lon": 7.4163889,
+        "alt": 430
+      },
+      "lsgy": {
+        "lat": 46.7619444,
+        "lon": 6.6133333,
+        "alt": 433
+      },
+      "lfns": {
+        "lat": 44.2866667,
+        "lon": 5.9291667,
+        "alt": 542
+      },
+      "lfmx": {
+        "lat": 44.0586111,
+        "lon": 5.9908333,
+        "alt": 459
+      },
+      "lspv": {
+        "lat": 47.20283333,
+        "lon": 8.86716667,
+        "alt": 407
       }
     }
   }

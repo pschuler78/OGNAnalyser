@@ -138,6 +138,12 @@ namespace OGNAnalyser.Client.Parser
             {
                 var match = matcherAircraftBodyRegex.Match(receivedLine);
 
+                if (match.Success == false)
+                {
+
+                    return;
+                }
+
                 // coords extension
                 string coordsExt = match.Groups[1].Value.Trim();
                 if(!string.IsNullOrWhiteSpace(coordsExt))
@@ -147,7 +153,16 @@ namespace OGNAnalyser.Client.Parser
                 }
 
                 // aircraft id
-                beacon.AircraftId = ulong.Parse(match.Groups[2].Value.Trim(), NumberStyles.HexNumber);
+                var aircraftId = match.Groups[2].Value.Trim();
+                beacon.AircraftId = ulong.Parse(aircraftId, NumberStyles.HexNumber);
+                //try
+                //{
+                //    beacon.AircraftId = ulong.Parse(aircraftId, NumberStyles.HexNumber);
+                //}
+                //catch (Exception ex)
+                //{
+                //    throw ex;
+                //}
 
                 // climb rate
                 beacon.ClimbRateMetersPerSecond = (float) Math.Round(float.Parse(match.Groups[3].Value, CultureInfo.InvariantCulture) * 0.00508f, 2);

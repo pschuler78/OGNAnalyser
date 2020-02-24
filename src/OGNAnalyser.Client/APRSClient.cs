@@ -157,7 +157,7 @@ namespace OGNAnalyser.Client
                     }
                     catch (BeaconParserException e)
                     {
-                        _log.LogWarning("Problem matching APRS line: {0}", e.StringPartParsing);
+                        _log.LogWarning("Problem matching APRS line: Message: {0}, Parsing content: {1}", e.Message, e.StringPartParsing);
                     }
                 }
             }
